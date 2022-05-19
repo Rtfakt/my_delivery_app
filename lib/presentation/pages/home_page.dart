@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:my_delivery_app/models/category_model.dart';
 import 'package:my_delivery_app/models/food_model.dart';
 import 'package:my_delivery_app/presentation/widgets/bottom_navigation_bar_custom.dart';
@@ -7,6 +8,7 @@ import 'package:my_delivery_app/presentation/widgets/food_cards.dart';
 import 'package:my_delivery_app/presentation/widgets/preview_cards.dart';
 import 'package:flutter/material.dart';
 import 'package:my_delivery_app/presentation/widgets/text_field_custom.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../models/preview_cards_model.dart';
 
@@ -24,35 +26,53 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: const BottomNavigationBarCustom(),
-      body: ListView(children: [
-        Column(
-          children: [
-            const TextFieldCustom(),
-            Container(
-              child: CarouselSlider(
-                options: CarouselOptions(
-                  aspectRatio: 1.5,
-                  viewportFraction: 0.9,
-                  enlargeCenterPage: true,
-                  enlargeStrategy: CenterPageEnlargeStrategy.height,
-                  enableInfiniteScroll: false,
-                ),
-                items: PreviewCardsItem.previewcards
-                    .map((category) => PreviewCards(category: category))
-                    .toList(),
+    return SafeArea(
+      top: false,
+      bottom: false,
+      child: Scaffold(
+        bottomNavigationBar: const BottomNavigationBarCustom(),
+        body: CustomScrollView(
+            slivers: <Widget>[
+          SliverAppBar(
+            pinned: true,
+            backgroundColor: Theme.of(context).primaryColor,
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return const TextFieldCustom();
+              },
+              childCount: 1,
+            ),
+          ),
+          SliverPadding(
+            padding: EdgeInsets.symmetric(vertical: 15),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return Container(
+                    child: CarouselSlider(
+                      options: CarouselOptions(
+                        aspectRatio: 1.5,
+                        viewportFraction: 0.9,
+                        enlargeCenterPage: true,
+                        enlargeStrategy: CenterPageEnlargeStrategy.height,
+                        enableInfiniteScroll: false,
+                      ),
+                      items: PreviewCardsItem.previewcards
+                          .map((category) => PreviewCards(category: category))
+                          .toList(),
+                    ),
+                  );
+                },
+                childCount: 1,
               ),
             ),
-            const SizedBox(
-              height: 5,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: SizedBox(
-                height: 40.0,
+          ),
+           SliverPinnedHeader(
+             child: Container(
+                height: 100.0,
                 child: ListView.builder(
-                  shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: Category.categories.length,
                   itemBuilder: (context, index) {
@@ -60,18 +80,24 @@ class HomePage extends StatelessWidget {
                   },
                 ),
               ),
-            ),
-            ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: Food.food.length,
-                itemBuilder: (context, index) {
+           ),
+              SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
                 return FoodCard(food: Food.food[index]);
-                }
+              },
+              childCount: Food.food.length,
             ),
-          ],
-        ),
-      ]),
+          ),
+        ]),
+      ),
     );
   }
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    // TODO: implement shouldRebuild
+    throw UnimplementedError();
+  }
 }
+
