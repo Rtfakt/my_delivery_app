@@ -25,10 +25,19 @@ class BottomNavigationBarCustom extends StatelessWidget {
               onPressed: () {},
             ),
             IconButton(
+
               color: _iconsColor,
               icon: const Icon(Icons.location_on),
               onPressed: () {
                 Navigator.pushNamed(context, '/location');
+              },
+            ),
+            IconButton(
+              iconSize: 40,
+              color: Colors.deepOrange,
+              icon: const Icon(Icons.qr_code),
+              onPressed: () {
+                Navigator.pushNamed(context, '/food-details');
               },
             ),
             IconButton(

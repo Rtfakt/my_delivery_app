@@ -6,6 +6,8 @@ ThemeData theme() {
 
     scaffoldBackgroundColor: const Color(0x0FF1B2025),
 
+
+
     fontFamily: 'Futura',
     textTheme: const TextTheme(
       headline1: TextStyle(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../presentation/pages/basket_page.dart';
+import '../presentation/pages/food_details_page.dart';
 import '../presentation/pages/home_page.dart';
 import '../presentation/pages/location_page.dart';
 
@@ -18,6 +19,9 @@ class AppRouter {
         return LocationPage.route();
       case BaskedPage.routeName:
         return BaskedPage.route();
+      case FoodDetailsPage.routeName:
+        return FoodDetailsPage.route();
+
 
 
 

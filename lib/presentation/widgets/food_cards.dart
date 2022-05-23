@@ -15,7 +15,7 @@ class FoodCard extends StatelessWidget {
       child: Row(
           children: [
         Padding(
-          padding: const EdgeInsets.only(left: 20.0,),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Image.asset(
             food.foodImage,
             width: 150,
@@ -28,7 +28,7 @@ class FoodCard extends StatelessWidget {
               Container(
                 child: Center(
                   child: Padding(
-                    padding: EdgeInsets.only(right: 25),
+                    padding: const EdgeInsets.only(right: 25),
                     child: Text(
                       '${food.foodName}',
                       style: const TextStyle(

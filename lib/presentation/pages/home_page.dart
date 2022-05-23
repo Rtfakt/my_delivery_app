@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:my_delivery_app/models/category_model.dart';
 import 'package:my_delivery_app/models/food_model.dart';
 import 'package:my_delivery_app/presentation/widgets/bottom_navigation_bar_custom.dart';
@@ -31,9 +30,9 @@ class HomePage extends StatelessWidget {
       bottom: false,
       child: Scaffold(
         bottomNavigationBar: const BottomNavigationBarCustom(),
-        body: CustomScrollView(
-            slivers: <Widget>[
+        body: CustomScrollView(slivers: <Widget>[
           SliverAppBar(
+            elevation: 0,
             pinned: true,
             backgroundColor: Theme.of(context).primaryColor,
           ),
@@ -46,42 +45,40 @@ class HomePage extends StatelessWidget {
             ),
           ),
           SliverPadding(
-            padding: EdgeInsets.symmetric(vertical: 15),
+            padding: const EdgeInsets.symmetric(vertical: 15),
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
-                  return Container(
-                    child: CarouselSlider(
-                      options: CarouselOptions(
-                        aspectRatio: 1.5,
-                        viewportFraction: 0.9,
-                        enlargeCenterPage: true,
-                        enlargeStrategy: CenterPageEnlargeStrategy.height,
-                        enableInfiniteScroll: false,
-                      ),
-                      items: PreviewCardsItem.previewcards
-                          .map((category) => PreviewCards(category: category))
-                          .toList(),
+                  return CarouselSlider(
+                    options: CarouselOptions(
+                      aspectRatio: 1.5,
+                      viewportFraction: 0.9,
+                      enlargeCenterPage: true,
+                      enlargeStrategy: CenterPageEnlargeStrategy.height,
+                      enableInfiniteScroll: false,
                     ),
+                    items: PreviewCardsItem.previewcards
+                        .map((category) => PreviewCards(category: category))
+                        .toList(),
                   );
                 },
                 childCount: 1,
               ),
             ),
           ),
-           SliverPinnedHeader(
-             child: Container(
-                height: 100.0,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: Category.categories.length,
-                  itemBuilder: (context, index) {
-                    return CategoryCards(category: Category.categories[index]);
-                  },
-                ),
+          SliverPinnedHeader(
+            child: SizedBox(
+              height: 100.0,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: Category.categories.length,
+                itemBuilder: (context, index) {
+                  return CategoryCards(category: Category.categories[index]);
+                },
               ),
-           ),
-              SliverList(
+            ),
+          ),
+          SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
                 return FoodCard(food: Food.food[index]);
@@ -93,11 +90,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    // TODO: implement shouldRebuild
-    throw UnimplementedError();
-  }
 }
-
