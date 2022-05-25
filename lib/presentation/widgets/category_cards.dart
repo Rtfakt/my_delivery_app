@@ -13,21 +13,18 @@ class CategoryCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 110.0,
-      decoration: BoxDecoration(
+    return  Container(
         color: Theme.of(context).primaryColor,
-      ),
-      child: Stack(
-        children: [
-          Center(
-            child: Text(
-              category.name,
-              style: Theme.of(context).textTheme.headline5!.copyWith(color: Colors.grey),
-            ),
-          )
-        ],
-      ),
+    child: TextButton(
+          onPressed: () {},
+              child: Text(
+                category.name,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 28,
+                ),
+              ),
+        ),
     );
   }
 }

@@ -7,6 +7,7 @@ class Food extends Equatable {
   final int foodPrice;
   final String foodImage;
 
+
   const Food(
       {required this.foodId,
       required this.foodName,
@@ -24,74 +25,75 @@ class Food extends Equatable {
         foodImage: 'assets/foodCard/Pizza1.png',
         foodPrice: 70),
     const Food(
-        foodId: 1,
+        foodId: 2,
         foodName: 'Pizza2',
         foodImage: 'assets/foodCard/Pizza2.png',
         foodPrice: 70),
     const Food(
-        foodId: 1,
+        foodId: 3,
         foodName: 'Pizza3',
         foodImage: 'assets/foodCard/Pizza3.png',
         foodPrice: 70),
     const Food(
-        foodId: 1,
+        foodId: 4,
         foodName: 'Burger1',
         foodImage: 'assets/foodCard/Burger1.png',
         foodPrice: 70),
     const Food(
-        foodId: 1,
+        foodId: 5,
         foodName: 'Burger2',
         foodImage: 'assets/foodCard/Burger2.png',
         foodPrice: 70),
     const Food(
-        foodId: 1,
+        foodId: 6,
         foodName: 'Burger3',
         foodImage: 'assets/foodCard/Burger3.png',
         foodPrice: 70),
     const Food(
-        foodId: 1,
+        foodId: 7,
         foodName: 'Desert1',
         foodImage: 'assets/foodCard/Desert1.png',
         foodPrice: 70),
     const Food(
-        foodId: 1,
+        foodId: 8,
         foodName: 'Desert2',
         foodImage: 'assets/foodCard/Desert2.png',
         foodPrice: 70),
     const Food(
-        foodId: 1,
+        foodId: 9,
         foodName: 'Desert3',
         foodImage: 'assets/foodCard/Desert3.png',
         foodPrice: 70),
     const Food(
-        foodId: 1,
+        foodId: 10,
         foodName: 'Drink1',
         foodImage: 'assets/foodCard/Drink1.png',
         foodPrice: 70),
     const Food(
-        foodId: 1,
+        foodId: 11,
         foodName: 'Drink2',
         foodImage: 'assets/foodCard/Drink2.png',
         foodPrice: 70),
     const Food(
-        foodId: 1,
+        foodId: 12,
         foodName: 'Drink3',
         foodImage: 'assets/foodCard/Drink3.png',
         foodPrice: 70),
     const Food(
-        foodId: 1,
+        foodId: 13,
         foodName: 'Salad1',
         foodImage: 'assets/foodCard/Salad1.png',
         foodPrice: 70),
     const Food(
-        foodId: 1,
+        foodId: 14,
         foodName: 'Salad2',
         foodImage: 'assets/foodCard/Salad2.png',
         foodPrice: 70),
     const Food(
-        foodId: 1,
+        foodId: 15,
         foodName: 'Salad3',
         foodImage: 'assets/foodCard/Salad3.png',
         foodPrice: 70),
   ];
+
 }

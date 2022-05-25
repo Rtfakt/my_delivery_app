@@ -1,28 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:my_delivery_app/models/add_ingredients_model.dart';
 import 'package:my_delivery_app/models/food_model.dart';
+import 'package:my_delivery_app/presentation/widgets/add_drinks.dart';
+import 'package:my_delivery_app/presentation/widgets/add_ingredients.dart';
 
 class FoodDetailsPage extends StatelessWidget {
   static const String routeName = '/food-details';
 
-  static Route route() {
+  static Route route({required Food food}) {
     return MaterialPageRoute(
-      builder: (_) => const FoodDetailsPage(),
+      builder: (_) =>  FoodDetailsPage(food: food),
       settings: const RouteSettings(name: routeName),
     );
   }
+  final Food food;
+
 
   const FoodDetailsPage({
-    Key? key,
-  }) : super(key: key);
+    Key? key, required this.food,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final Food food = Food.food[0];
+    final Ingredients ingredients;
 
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       bottomNavigationBar: BottomAppBar(
-        color: Theme.of(context).primaryColor,
+        color: Colors.transparent,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -41,14 +46,16 @@ class FoodDetailsPage extends StatelessWidget {
         slivers: [
           SliverSafeArea(
             sliver: SliverAppBar(
+              toolbarHeight: 80,
+              pinned: true,
               bottom: PreferredSize(
-                preferredSize: const Size.fromHeight(20),
+                preferredSize: const Size.fromHeight(50),
                 child: SizedBox(
                   child: Center(
                     child: RichText(
-                      text: const TextSpan(
-                        text: 'Pizza1',
-                        style: TextStyle(
+                      text:  TextSpan(
+                        text: food.foodName,
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 35,
                         ),
@@ -77,28 +84,72 @@ class FoodDetailsPage extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               child: const Text(
-                'Убрать ингредиенты',
-                style: TextStyle(color: Colors.grey, fontSize: 20),
+                'Добавить ингредиенты',
+                style: TextStyle(color: Colors.white, fontSize: 20),
               ),
             ),
           ),
           SliverPadding(
             padding: const EdgeInsets.all(
-              15,
+              20,
             ),
             sliver: SliverGrid(
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 20,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                childAspectRatio: 4,
-              ) ,
+                maxCrossAxisExtent: 180,
+                mainAxisSpacing: 20,
+                crossAxisSpacing: 8,
+                childAspectRatio: 2,
+              ),
               delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-
-                  })
+                (context, index) {
+                  return AddIngredients(
+                      ingredients: Ingredients.ingredients[index]);
+                },
+                childCount: Ingredients.ingredients.length,
               ),
             ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              child: const Text(
+                'Напитки',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            ),
+          ),
+          SliverGrid(
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 180,
+              mainAxisSpacing: 20,
+              crossAxisSpacing: 8,
+              childAspectRatio: 2,
+            ),
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return const Card();
+              },
+              childCount: 3,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              child: const Text(
+                'Описание',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              child: const Text(
+                'многобукофkfarbgrje.kgb.rgc regsk.cg.sc.gkbfd.scghelrcmglerchng;cnvhgslnvghvnlsghvlkghse.vgnkskcgns.',
+                style: TextStyle(color: Colors.grey, fontSize: 20),
+              ),
+            ),
+          ),
         ],
       ),
     );

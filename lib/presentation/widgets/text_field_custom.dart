@@ -11,14 +11,14 @@ class TextFieldCustom extends StatelessWidget {
         decoration: InputDecoration(
           focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(
-              color: Color(0xFF303030),
+              color: Colors.grey,
             ),
           ),
           hoverColor: Colors.black45,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
             borderSide: const BorderSide(
-              color: Color(0xFF303030),
+              color: Colors.grey,
             ),
           ),
           hintText: 'Поиск',

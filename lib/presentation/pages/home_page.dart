@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
           ),
           SliverPinnedHeader(
             child: SizedBox(
-              height: 100.0,
+              height: 50.0,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: Category.categories.length,
